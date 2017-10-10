@@ -1,4 +1,4 @@
-package com.sabre.tn.stp.sys.policyExecutionTranslator.service;
+ 
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -22,46 +22,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import com.sabre.policy.policy.DefaultPolicyEvaluationCollector;
-import com.sabre.policy.policy.PolicyEvaluationCollector;
-import com.sabre.services.stl_payload.v02_00.ProblemInformation;
-import com.sabre.stl.travelpolicy.v2.AirAssetRequest;
-import com.sabre.stl.travelpolicy.v2.ExecutionRequest;
-import com.sabre.stl.travelpolicy.v2.ObjectFactory;
-import com.sabre.stl.travelpolicy.v2.ProfileTypes;
-import com.sabre.stl.travelpolicy.v2.TravelPolicyExecutionRQ;
-import com.sabre.stl.travelpolicy.v2.TravelPolicyExecutionRS;
-import com.sabre.stl.travelpolicy.v2.Traveler;
-import com.sabre.tn.stp.auxl.domainModel.domainInterface.ExecutionWorkflowType;
-import com.sabre.tn.stp.auxl.domainModel.domainInterface.IAsset;
-import com.sabre.tn.stp.auxl.domainModel.domainInterface.IPolicyExecutionComposite;
-import com.sabre.tn.stp.auxl.domainModel.domainInterface.IPreferenceExecution;
-import com.sabre.tn.stp.auxl.domainModel.domainInterface.ISegment;
-import com.sabre.tn.stp.auxl.domainModel.domainInterface.PreferenceLevelType;
-import com.sabre.tn.stp.auxl.domainModel.model.GeographicData;
-import com.sabre.tn.stp.auxl.domainModel.model.PolicyExecutionComposite;
-import com.sabre.tn.stp.auxl.domainModel.model.PreferenceExecution;
-import com.sabre.tn.stp.auxl.domainModel.model.air.AirAsset;
-import com.sabre.tn.stp.auxl.domainModel.model.air.AirSegment;
-import com.sabre.tn.stp.auxl.errors.ServiceErrorType;
-import com.sabre.tn.stp.auxl.exception.ServiceException;
-import com.sabre.tn.stp.auxl.utilities.ApplicationConstants;
-import com.sabre.tn.stp.auxl.utilities.MarketPrefType;
-import com.sabre.tn.stp.auxl.xmlTranslation.JaxbOtaInterface;
-import com.sabre.tn.stp.auxl.xmlTranslation.JaxbOtaMarshallerUnMarshaller;
-import com.sabre.tn.stp.sys.adminComponent.service.IControlDataService;
-import com.sabre.tn.stp.sys.database.model.IPolicyPrefMarketing;
-import com.sabre.tn.stp.sys.database.model.IPolicyPrefSpl;
-import com.sabre.tn.stp.sys.database.model.IPreference;
-import com.sabre.tn.stp.sys.database.model.IPreferenceComposite;
-import com.sabre.tn.stp.sys.database.model.PolicyPreferenceMarketingModel;
-import com.sabre.tn.stp.sys.database.model.PolicyPreferenceModel;
-import com.sabre.tn.stp.sys.database.model.PolicyPreferenceSupplierModel;
-import com.sabre.tn.stp.sys.database.model.PreferenceCompositeVO;
-import com.sabre.tn.stp.sys.policyExecutionTranslator.service.helpers.AirExecutionServiceHelper;
-import com.sabre.tn.stp.sys.policyExecutionTranslator.service.preference.IPreferenceSort;
-import com.sabre.tn.stp.sys.vendorPreferenceComponent.service.AirServiceUtil;
-import com.sabre.tn.stp.sys.vendorPreferenceComponent.service.IVendorPreferenceService;
+ 
 
 /**
  * The Class ExecutionServiceTest.
@@ -223,8 +184,8 @@ public class ExecutionServiceTest {
         policyExecutionComposite.getAirAssets().get(0).setCorporatePolicyViolations(new HashMap<String, String>());
         TravelPolicyExecutionRS response = (TravelPolicyExecutionRS) executionService.getJaxbObjFromDomainObj(policyExecutionComposite, emptyErrorMap, emptyErrorMap, ServiceTestHelper.VERSION);
         assertNotNull(response);
-        assertEquals(com.sabre.stl.travelpolicy.v2.PreferenceExecutionLevel.FIFTH_MOST_PREFERRED, response.getExecutionResponseSummary().getAirAssetResponse().get(0).getAirSegmentResponse().get(0).getPreferenceLevelAgency());
-        assertEquals(com.sabre.stl.travelpolicy.v2.PreferenceExecutionLevel.NEUTRAL, response.getExecutionResponseSummary().getAirAssetResponse().get(0).getAirSegmentResponse().get(0).getPreferenceLevelCorporate());
+        assertEquals(com.xyz.stl.travelpolicy.v2.PreferenceExecutionLevel.FIFTH_MOST_PREFERRED, response.getExecutionResponseSummary().getAirAssetResponse().get(0).getAirSegmentResponse().get(0).getPreferenceLevelAgency());
+        assertEquals(com.xyz.stl.travelpolicy.v2.PreferenceExecutionLevel.NEUTRAL, response.getExecutionResponseSummary().getAirAssetResponse().get(0).getAirSegmentResponse().get(0).getPreferenceLevelCorporate());
         assertTrue(response.getExecutionResponseSummary().getAirAssetResponse().get(0).isInPolicyInd());
 
     }
@@ -271,8 +232,8 @@ public class ExecutionServiceTest {
         policyExecutionComposite.getAirAssets().get(0).setCorporatePolicyViolations(new HashMap<String, String>());
         TravelPolicyExecutionRS response = (TravelPolicyExecutionRS) executionService.getJaxbObjFromDomainObj(policyExecutionComposite, emptyErrorMap, emptyErrorMap, ServiceTestHelper.VERSION);
         assertNotNull(response);
-        assertEquals(com.sabre.stl.travelpolicy.v2.PreferenceExecutionLevel.FIFTH_MOST_PREFERRED, response.getExecutionResponseSummary().getAirAssetResponse().get(0).getAirSegmentResponse().get(0).getPreferenceLevelAgency());
-        assertEquals(com.sabre.stl.travelpolicy.v2.PreferenceExecutionLevel.NEUTRAL, response.getExecutionResponseSummary().getAirAssetResponse().get(0).getAirSegmentResponse().get(0).getPreferenceLevelCorporate());
+        assertEquals(com.xyz.stl.travelpolicy.v2.PreferenceExecutionLevel.FIFTH_MOST_PREFERRED, response.getExecutionResponseSummary().getAirAssetResponse().get(0).getAirSegmentResponse().get(0).getPreferenceLevelAgency());
+        assertEquals(com.xyz.stl.travelpolicy.v2.PreferenceExecutionLevel.NEUTRAL, response.getExecutionResponseSummary().getAirAssetResponse().get(0).getAirSegmentResponse().get(0).getPreferenceLevelCorporate());
         assertTrue(response.getExecutionResponseSummary().getAirAssetResponse().get(0).isInPolicyInd());
 
     }
@@ -621,7 +582,7 @@ public class ExecutionServiceTest {
         airAssetRequest.setAssetID("321");
         airAssetRequest.setDepartureDate(null);
 
-        com.sabre.stl.travelpolicy.v2.AirSegment airSegment = new com.sabre.stl.travelpolicy.v2.AirSegment();
+        com.xyz.stl.travelpolicy.v2.AirSegment airSegment = new com.xyz.stl.travelpolicy.v2.AirSegment();
         airSegment.setArrival("arrival");
         airSegment.setBookingClass("class1");
         airSegment.setDeparture("depart");
@@ -630,7 +591,7 @@ public class ExecutionServiceTest {
         airAssetRequest.getAirSegment().add(airSegment);
         executionRequest.getAirAssetRequest().add(airAssetRequest);
 
-        executionRequest.setWorkflow(com.sabre.stl.travelpolicy.v2.ExecutionWorkflowType.AVAIL);
+        executionRequest.setWorkflow(com.xyz.stl.travelpolicy.v2.ExecutionWorkflowType.AVAIL);
         request.setExecutionRequestSummary(executionRequest);
 
         return request;
